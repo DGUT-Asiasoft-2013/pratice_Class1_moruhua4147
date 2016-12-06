@@ -32,7 +32,7 @@ public class SimpleTextInputCellFragment extends BaseInputCellFragment {
 		label.setText(labelText);
 	}
 	public void setHintText(String hintText){
-		label.setHint(hintText);
+		edit.setHint(hintText);
 	}
 	public void setIsPassword(boolean isPassword){
 		if(isPassword){

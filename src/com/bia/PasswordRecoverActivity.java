@@ -27,8 +27,10 @@ public class PasswordRecoverActivity extends Activity {
 		getFragmentManager()
 		.beginTransaction()
 		.replace(R.id.container, step1Fragment)
-		.commit();
+		.commit();//¶÷¶÷
 	}
+	
+	
 	
 	void goStep2(){
 		getFragmentManager()

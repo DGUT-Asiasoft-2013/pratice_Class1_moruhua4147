@@ -52,6 +52,7 @@ public class LoginActivity extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		
 		fraginputid.setLabelText("’À∫≈");
 		fraginputid.setHintText("«Î ‰»Î’À∫≈");
 		fraginputpassword.setLabelText("√‹¬Î");
