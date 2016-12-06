@@ -13,7 +13,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class SimpleTextInputCellFragment extends Fragment {
+public class SimpleTextInputCellFragment extends BaseInputCellFragment {
 	//»ı“˝”√
 	//WeakReference<TextView> label;
 	TextView label;

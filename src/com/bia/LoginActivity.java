@@ -56,6 +56,7 @@ public class LoginActivity extends Activity {
 		fraginputid.setHintText("ÇëÊäÈëÕËºÅ");
 		fraginputpassword.setLabelText("ÃÜÂë");
 		fraginputpassword.setHintText("ÇëÊäÈëÃÜÂë");
+		fraginputpassword.setIsPassword(true);
 
 	}
 

@@ -16,7 +16,7 @@ public class PasswordRecoverStep1Fragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		if (view == null) {
-			View view = inflater.inflate(R.layout.fragment_password_recover_step1, null);
+			view = inflater.inflate(R.layout.fragment_password_recover_step1, null);
 			fragEmail = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_email);
 
 			view.findViewById(R.id.btn_next).setOnClickListener(new View.OnClickListener() {
