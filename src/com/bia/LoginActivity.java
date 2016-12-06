@@ -18,8 +18,8 @@ public class LoginActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		fraginputid=(SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_id);
-		fraginputpassword=(SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_password);
+		fraginputid = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_id);
+		fraginputpassword = (SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_password);
 
 		findViewById(R.id.btn_register).setOnClickListener(new View.OnClickListener() {
 
@@ -28,27 +28,26 @@ public class LoginActivity extends Activity {
 				goRegister();
 			}
 		});
-		
+
 		findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				goLogin();
-				
+
 			}
 		});
-		
+
 		findViewById(R.id.for_password).setOnClickListener(new View.OnClickListener() {
-			
+
 			public void onClick(View v) {
-				Toast.makeText(getApplicationContext(), "Õ¸º«¡Àƒ‹‘ı√¥∞Ï¬Ô",
-					     Toast.LENGTH_SHORT).show();				
+				
+				goRecoverPassword();
 			}
 		});
-		
-		}
-	
-	
+
+	}
+
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -57,15 +56,20 @@ public class LoginActivity extends Activity {
 		fraginputid.setHintText("«Î ‰»Î’À∫≈");
 		fraginputpassword.setLabelText("√‹¬Î");
 		fraginputpassword.setHintText("«Î ‰»Î√‹¬Î");
-		
+
 	}
 
 	void goRegister() {
 		Intent itnt = new Intent(this, RegisterActivity.class);
 		startActivity(itnt);
 	}
-	void goLogin(){
-		Intent intent=new Intent(this, HelloWorldActivity.class);
+
+	void goLogin() {
+		Intent intent = new Intent(this, HelloWorldActivity.class);
 		startActivity(intent);
+	}
+	void goRecoverPassword(){
+		Intent itnt = new Intent(this, PasswordRecoverActivity.class);
+		startActivity(itnt);
 	}
 }

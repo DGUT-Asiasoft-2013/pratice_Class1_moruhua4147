@@ -36,6 +36,10 @@
             android:name="RegisterActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar"         
             ></activity>
+        <activity 
+            android:name="PasswordRecoverActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"         
+            ></activity>
     </application>
 
 </manifest>
