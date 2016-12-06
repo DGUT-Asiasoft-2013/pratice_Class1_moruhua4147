@@ -1,47 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pic1" >
-    
-    
-    
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="202dp"
+        android:layout_height="291dp"
         android:layout_gravity="center"
         android:orientation="vertical" >
-        
+
+        <fragment
+            android:id="@+id/input_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="com.bia.fragment.SimpleTextInputCellFragment"
+            tools:layout="@layout/fragment_inputcell_simpletext" />
+
+        <fragment
+            android:id="@+id/input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="com.bia.fragment.SimpleTextInputCellFragment"
+            tools:layout="@layout/fragment_inputcell_simpletext" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="70sp"
+                android:layout_height="50sp"
+                
+                android:text="登陆" />
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+               
+                android:text="注册" />
+        </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="12sp"
-            android:text="已有账号？登陆" />
-
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="登陆" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:text="LOGIN ACTIVITY"
             android:textColor="@android:color/holo_red_light"
-            android:textSize="18sp"
-            android:text="LOGIN ACTIVITY" />
-
-        <Button
-            android:id="@+id/btn_register"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/for_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             android:layout_gravity="center_horizontal"
-            android:text="注册" />
+            android:layout_gravity="center"
+            android:text="忘记密码"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="12sp" />
     </LinearLayout>
 
 </FrameLayout>
