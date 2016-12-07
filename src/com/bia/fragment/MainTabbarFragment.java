@@ -1,11 +1,14 @@
 package com.bia.fragment;
 
+import com.bia.BtnActivity;
 import com.bia.R;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 public class MainTabbarFragment extends Fragment {
@@ -35,6 +38,19 @@ public class MainTabbarFragment extends Fragment {
 				}
 			});
 		}
+		
+		btnNew.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(getActivity(),BtnActivity.class);
+				startActivity(intent);	
+				getActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.none);
+			}
+		});
+		
+		
 		return view;
 	}
 
