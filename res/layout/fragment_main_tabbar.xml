@@ -54,8 +54,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:text="+" />
+        android:background="@drawable/ffe85e0c588797ffbf725da8bdcf2deb1ff25136"
+        android:gravity="center" />
 
     <LinearLayout
         android:id="@+id/tab_search"

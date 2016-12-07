@@ -1,13 +1,12 @@
 package com.bia;
 
-import com.bia.fragment.PictureInputCellFragment;
-import com.bia.fragment.SimpleTextInputCellFragment;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import inputcells.PictureInputCellFragment;
+import inputcells.SimpleTextInputCellFragment;
 
 public class RegisterActivity extends Activity {
 

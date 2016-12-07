@@ -1,4 +1,4 @@
-package com.bia.fragment;
+package inputcells;
 
 import android.app.Fragment;
 import android.widget.EditText;

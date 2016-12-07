@@ -22,21 +22,21 @@
                 android:id="@+id/input_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                class="com.bia.fragment.SimpleTextInputCellFragment"
+                class="inputcells.SimpleTextInputCellFragment"
                 tools:layout="@layout/fragment_inputcell_simpletext" />
 
             <fragment
                 android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                class="com.bia.fragment.SimpleTextInputCellFragment"
+                class="inputcells.SimpleTextInputCellFragment"
                 tools:layout="@layout/fragment_inputcell_simpletext" />
 
             <fragment
                 android:id="@+id/input_password_repeat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                class="com.bia.fragment.SimpleTextInputCellFragment"
+                class="inputcells.SimpleTextInputCellFragment"
                 tools:layout="@layout/fragment_inputcell_simpletext" />
 
             <Button
@@ -49,7 +49,7 @@
                 android:id="@+id/pic_select"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                class="com.bia.fragment.PictureInputCellFragment"
+                class="inputcells.PictureInputCellFragment"
                 tools:layout="@layout/fragment_inputcell_picture" />
         </LinearLayout>
     </ScrollView>

@@ -1,13 +1,12 @@
 package com.bia;
 
-import com.bia.fragment.SimpleTextInputCellFragment;
-
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+import inputcells.SimpleTextInputCellFragment;
 
 public class LoginActivity extends Activity {
 	SimpleTextInputCellFragment fraginputid;
