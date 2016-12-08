@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@android:color/holo_green_dark"
+    android:background="@android:color/white"
     android:orientation="horizontal" >
 
     <LinearLayout
@@ -18,13 +18,13 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/pain_cat" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Feeds"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/holo_blue_light" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,13 +40,13 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/note" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Notes"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/holo_blue_light" />
     </LinearLayout>
 
     <Button
@@ -70,13 +70,13 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/invisible" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Search"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/holo_blue_light" />
     </LinearLayout>
 
     <LinearLayout
@@ -92,13 +92,13 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/meditation_guru" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Me"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/holo_blue_light" />
     </LinearLayout>
 
 </LinearLayout>

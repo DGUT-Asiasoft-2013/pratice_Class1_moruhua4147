@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -47,7 +48,7 @@ public class FeedListFragment extends Fragment {
 			Random random = new Random();
 			data = new String[10 + random.nextInt(30) % 20];
 			for (int i = 0; i < data.length; i++) {
-				data[i] = "YOUYOUYOU" + random.nextInt();
+				data[i] = ""+random.nextInt();
 			}
 
 		}
@@ -70,13 +71,14 @@ public class FeedListFragment extends Fragment {
 
 			if (convertView == null) {
 				LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-				view = inflater.inflate(android.R.layout.simple_list_item_1, null);
+				view = inflater.inflate(R.layout.fragment_showlistview, null);
 
 			} else {
 				view = convertView;
 			}
-			TextView textView = (TextView) view.findViewById(android.R.id.text1);
-			textView.setText("A" + data[position]);
+			TextView textView = (TextView) view.findViewById(R.id.text_rua);
+			ImageView imageView=(ImageView) view.findViewById(R.id.image_bear);
+			textView.setText("RuA!!" + data[position]);
 			textView.setTextColor(Color.BLACK);
 			return view;
 		}
