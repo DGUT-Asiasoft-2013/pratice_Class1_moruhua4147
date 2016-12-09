@@ -1,12 +1,16 @@
 package com.bia;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.security.MessageDigest;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DownloadManager.Request;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +19,7 @@ import inputcells.PictureInputCellFragment;
 import inputcells.SimpleTextInputCellFragment;
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -28,6 +33,8 @@ public class RegisterActivity extends Activity {
 	SimpleTextInputCellFragment fragInputCellPassword;
 	SimpleTextInputCellFragment fragInputCellPasswordRepeat;
 	PictureInputCellFragment pictureInputCellpicselect;
+	
+	
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -85,20 +92,26 @@ public class RegisterActivity extends Activity {
 		String email=fragInputEmailAddress.getText();
 		String passWord=fragInputCellPassword.getText();
 		
-		MultipartBody requestBodyBulider=new MultipartBody.Builder()
+		MultipartBody.Builder requestBodyBulider=new MultipartBody.Builder()
 				.setType(MultipartBody.FORM)
 				.addFormDataPart("account", account)
 				.addFormDataPart("name", name)
 				.addFormDataPart("email", email)
-				.addFormDataPart("passwordHash", passWord)
-				.build();
+				.addFormDataPart("passwordHash", passWord);
+
 		
+		if (pictureInputCellpicselect.getPngData()!=null){
+			RequestBody pngDataBody=RequestBody.create(MediaType.parse("image/png"), pictureInputCellpicselect.getPngData());
+			requestBodyBulider.addFormDataPart("avatar","avatar.png" , pngDataBody);
+			
+		}
 		
+		password=MD5.getMD5(password);
 		OkHttpClient client=new OkHttpClient();
 		okhttp3.Request request=new okhttp3.Request.Builder()
 				.url("http://172.27.0.21:8080/membercenter/api/register")
 				.method("post", null)
-				.post(requestBodyBulider)
+				.post(requestBodyBulider.build())
 				.build();
 		
 		final ProgressDialog progressDialog=new ProgressDialog(RegisterActivity.this);
@@ -157,4 +170,8 @@ public class RegisterActivity extends Activity {
 		.setPositiveButton("х╥хо", null)
 		.show();
 	}
+	
+	
+	
+	
 }

@@ -1,5 +1,7 @@
 package inputcells;
 
+import java.io.ByteArrayOutputStream;
+
 import com.bia.R;
 
 import android.R.string;
@@ -10,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -26,6 +29,7 @@ public class PictureInputCellFragment extends BaseInputCellFragment {
 
 	final int REQUESTCODE_CAMERA = 1;
 	final int REQUESTCODE_ALBUM = 2;
+	byte[] pngData;
 
 	ImageView imageView;
 	TextView labelText1;
@@ -100,6 +104,8 @@ public class PictureInputCellFragment extends BaseInputCellFragment {
 		startActivityForResult(itnt, REQUESTCODE_ALBUM);
 
 	}
+	
+	
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -112,10 +118,12 @@ public class PictureInputCellFragment extends BaseInputCellFragment {
 			// Toast.LENGTH_LONG).show();
 			Bitmap bmp = (Bitmap) data.getExtras().get("data");
 			imageView.setImageBitmap(bmp);
+			saveBitmap(bmp);
 		} else if (requestCode == REQUESTCODE_ALBUM) {
 			try {
 				Bitmap bmp = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
 				imageView.setImageBitmap(bmp);
+				saveBitmap(bmp);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -124,5 +132,15 @@ public class PictureInputCellFragment extends BaseInputCellFragment {
 		}
 
 	}
+	
+	public byte[] getPngData(){
+		return pngData;
+	}
+	void saveBitmap(Bitmap bmp){
+		ByteArrayOutputStream baos=new ByteArrayOutputStream();
+		bmp.compress(CompressFormat.PNG, 100, baos);
+		pngData=baos.toByteArray();
+	}
+
 
 }
