@@ -91,7 +91,7 @@ public class RegisterActivity extends Activity {
 		String name=fragInputName.getText();
 		String email=fragInputEmailAddress.getText();
 		String passWord=fragInputCellPassword.getText();
-		
+		passWord=MD5.getMD5(passWord);
 		MultipartBody.Builder requestBodyBulider=new MultipartBody.Builder()
 				.setType(MultipartBody.FORM)
 				.addFormDataPart("account", account)
@@ -106,7 +106,7 @@ public class RegisterActivity extends Activity {
 			
 		}
 		
-		password=MD5.getMD5(password);
+		
 		OkHttpClient client=new OkHttpClient();
 		okhttp3.Request request=new okhttp3.Request.Builder()
 				.url("http://172.27.0.21:8080/membercenter/api/register")
