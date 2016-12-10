@@ -87,6 +87,10 @@ public class RegisterActivity extends Activity {
 			new AlertDialog.Builder(RegisterActivity.this).setMessage("两次密码输入不一致").setPositiveButton("确认", null).show();
 			return;
 		}
+		if (isEmailEmpty()) {
+			new AlertDialog.Builder(RegisterActivity.this).setMessage("邮箱不能为空").setPositiveButton("确认", null).show();
+			return;
+		}
 		String account=fragInputCellAccount.getText();
 		String name=fragInputName.getText();
 		String email=fragInputEmailAddress.getText();
@@ -131,8 +135,8 @@ public class RegisterActivity extends Activity {
 						progressDialog.dismiss();
 						try {
 							RegisterActivity.this.onResponse(arg0,arg1.body().string());
-						} catch (Exception e) {
-							e.printStackTrace();
+						} catch (final Exception e) {
+							RegisterActivity.this.onFailure(arg0, e);
 							
 						}
 					}
@@ -156,9 +160,9 @@ public class RegisterActivity extends Activity {
 		});
 	}
 
-	void onFailure(Call arg0, IOException arg1) {
+	void onFailure(Call arg0, Exception arg1) {
 		new AlertDialog.Builder(this)
-		.setTitle("请求失败")
+		.setTitle("注册失败")
 		.setMessage(arg1.getLocalizedMessage())
 		.setPositiveButton("确认", null)
 		.show();
@@ -166,12 +170,20 @@ public class RegisterActivity extends Activity {
 
 	void onResponse(Call arg0, String string) {
 		new AlertDialog.Builder(this)
-		.setMessage("请求成功")
+		.setMessage("注册成功")
 		.setPositiveButton("确认", null)
 		.show();
 	}
 	
 	
-	
+	public boolean isEmailEmpty(){
+		String email=fragInputEmailAddress.getText();
+		if (email==null) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
 	
 }

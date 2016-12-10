@@ -52,7 +52,7 @@
     <Button
         android:id="@+id/btn_new"
         android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:background="@drawable/ffe85e0c588797ffbf725da8bdcf2deb1ff25136"
         android:gravity="center" />

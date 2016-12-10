@@ -14,11 +14,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+import api.Server;
 import inputcells.SimpleTextInputCellFragment;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.Response;
 
 public class LoginActivity extends Activity {
@@ -92,9 +94,16 @@ public class LoginActivity extends Activity {
 				.addFormDataPart("passwordHash", password);
 
 
-		OkHttpClient client = new OkHttpClient();
-		okhttp3.Request request=new okhttp3.Request.Builder()
-				.url("http://172.27.0.21:8080/membercenter/api/login")
+		//OkHttpClient client = new OkHttpClient();
+		OkHttpClient client =Server.getsharedClient();
+				
+//		Request request=new Request.Builder()
+//				.url("http://172.27.0.21:8080/membercenter/api/login")
+//				.method("post", null)
+//				.post(requestBodyBulider.build())
+//				.build();
+		
+		Request request = Server.requestBuilderWithApi("login")
 				.method("post", null)
 				.post(requestBodyBulider.build())
 				.build();
@@ -124,6 +133,8 @@ public class LoginActivity extends Activity {
 						@Override
 						public void run() {
 							LoginActivity.this.onResponse(arg0, user.getAccount());
+							Intent intent = new Intent(LoginActivity.this, HelloWorldActivity.class);
+									startActivity(intent);
 						}
 					});
 				}catch (final Exception e) {
@@ -157,7 +168,7 @@ public class LoginActivity extends Activity {
 
 	void onResponse(Call arg0,String string){
 		new AlertDialog.Builder(LoginActivity.this)
-		.setMessage("成功RU啊"+string)
+		.setMessage("账户："+string+"欢迎使用")
 		.setPositiveButton("Rua!", null)
 		.show();
 	}

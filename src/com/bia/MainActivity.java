@@ -2,8 +2,8 @@ package com.bia;
 
 import java.io.IOException;
 
+import android.R.menu;
 import android.app.Activity;
-import android.app.DownloadManager.Request;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,8 +13,9 @@ import android.widget.Toast;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.Response;
-
+import api.Server;
 public class MainActivity extends Activity {
 
 	@Override
@@ -56,11 +57,17 @@ public class MainActivity extends Activity {
 		// }
 		// }, 2000);
 
-		OkHttpClient client = new OkHttpClient();// 创建客户端实例对象
-													// 记得在manifest中家中联网user-permission
-		okhttp3.Request request = new okhttp3.Request.Builder().url("http://172.27.0.21:8080/membercenter/api/hello")// 创建请求
-				.method("GET", null).build();// 请求类型，一般有GET POST PUT DELECT
+//		OkHttpClient client = new OkHttpClient();// 创建客户端实例对象
+//													// 记得在manifest中家中联网user-permission
+//		Request request = new Request.Builder().url("http://172.27.0.21:8080/membercenter/api/hello")// 创建请求
+//				.method("GET", null).build();// 请求类型，一般有GET POST PUT DELECT
+		OkHttpClient client = Server.getsharedClient();
+		Request request = Server.requestBuilderWithApi("hello")
+				.method("GET", null).build();
+		
 
+		
+		
 		client.newCall(request).enqueue(new Callback() { // newCall().execute()是同步调用，在这里可能会卡主前端UI画面，所以使用enqueue,将请求插入后台，后台处理后回调一个callback方法返回结果
 
 			@Override
