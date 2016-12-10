@@ -1,12 +1,25 @@
 package com.bia;
 
+import java.io.IOException;
+
+import org.omg.CORBA.SetOverrideType;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 import inputcells.SimpleTextInputCellFragment;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Response;
 
 public class LoginActivity extends Activity {
 	SimpleTextInputCellFragment fraginputid;
@@ -40,7 +53,7 @@ public class LoginActivity extends Activity {
 		findViewById(R.id.for_password).setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				
+
 				goRecoverPassword();
 			}
 		});
@@ -51,7 +64,7 @@ public class LoginActivity extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		
+
 		fraginputid.setLabelText("’À∫≈");
 		fraginputid.setHintText("«Î ‰»Î’À∫≈");
 		fraginputpassword.setLabelText("√‹¬Î");
@@ -65,12 +78,96 @@ public class LoginActivity extends Activity {
 		startActivity(itnt);
 	}
 
+
+
 	void goLogin() {
-		Intent intent = new Intent(this, HelloWorldActivity.class);
-		startActivity(intent);
+		//		Intent intent = new Intent(this, HelloWorldActivity.class);
+		//		startActivity(intent);
+		String id=fraginputid.getText();
+		String password=fraginputpassword.getText();
+
+		MultipartBody.Builder requestBodyBulider=new MultipartBody.Builder()
+				.setType(MultipartBody.FORM)
+				.addFormDataPart("account", id)
+				.addFormDataPart("passwordHash", password);
+
+
+		OkHttpClient client = new OkHttpClient();
+		okhttp3.Request request=new okhttp3.Request.Builder()
+				.url("http://172.27.0.21:8080/membercenter/api/login")
+				.method("post", null)
+				.post(requestBodyBulider.build())
+				.build();
+
+		final ProgressDialog progressDialog=new ProgressDialog(LoginActivity.this);
+		progressDialog.setMessage("Loding");
+		progressDialog.setCancelable(false);
+		progressDialog.setCanceledOnTouchOutside(false);
+		progressDialog.show();
+
+
+
+		client.newCall(request).enqueue(new Callback() {
+
+			@Override
+			public void onResponse(final Call arg0,final Response arg1) throws IOException {
+				runOnUiThread(new Runnable() {
+					public void run() {
+						progressDialog.dismiss();		
+					}
+				});
+				
+				try{
+					ObjectMapper oMapper = new ObjectMapper();
+					final User user = oMapper.readValue(arg1.body().string(), User.class);
+					runOnUiThread(new Runnable() {					
+						@Override
+						public void run() {
+							LoginActivity.this.onResponse(arg0, user.getAccount());
+						}
+					});
+				}catch (final Exception e) {
+					runOnUiThread(new Runnable() {					
+						@Override
+						public void run() {
+							LoginActivity.this.onFailure(arg0, e);
+						}
+					});	
+				}
+			}
+
+			@Override
+			public void onFailure(final Call arg0,final IOException arg1) {
+				progressDialog.dismiss();
+				runOnUiThread(new Runnable() {					
+					@Override
+					public void run() {
+
+						LoginActivity.this.onFailure(arg0, arg1);
+					}
+				});				
+			}
+		});
+
 	}
 	void goRecoverPassword(){
 		Intent itnt = new Intent(this, PasswordRecoverActivity.class);
 		startActivity(itnt);
+	}
+
+	void onResponse(Call arg0,String string){
+		new AlertDialog.Builder(LoginActivity.this)
+		.setMessage("≥…π¶RU∞°"+string)
+		.setPositiveButton("Rua!", null)
+		.show();
+	}
+
+
+	void onFailure(Call arg0,Exception arg1){
+		new AlertDialog.Builder(LoginActivity.this)
+		.setTitle(" ß∞‹RU∞°")
+		.setMessage(arg1.getLocalizedMessage())
+		.setPositiveButton("Rua!", null)
+		.show();
 	}
 }

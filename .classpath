@@ -10,5 +10,8 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="libs/jackson-annotations-2.8.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/jackson-core-2.8.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/jackson-databind-2.8.5.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
