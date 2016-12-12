@@ -73,19 +73,31 @@ public class PasswordRecoverActivity extends Activity {
 		 client.newCall(request).enqueue(new Callback() {
 			
 			@Override
-			public void onResponse(final Call arg0,final Response arg1) throws IOException {			
-				runOnUiThread(new Runnable() {					
+			public void onResponse(final Call arg0,final Response arg1) throws IOException {	
+				
+					try {
+						final String responseString = arg1.body().string();
+						runOnUiThread(new Runnable() {
+							
+							@Override
+							public void run() {
+								PasswordRecoverActivity.this.onResponse(arg0, responseString);
+								
+							}
+						});
+
+					} catch (final Exception e) {
+						runOnUiThread(new Runnable() {
+							
+							@Override
+							public void run() {
+								PasswordRecoverActivity.this.onFailure(arg0, e);
+								
+							}
+						});
+					}	
 					
-					public void run() {
-						try {
-							PasswordRecoverActivity.this.onResponse(arg0,arg1.body().string());							
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						
-					}
-				});
+				
 				
 			}
 			
@@ -105,10 +117,10 @@ public class PasswordRecoverActivity extends Activity {
 
 
 
-	void onFailure(Call arg0, IOException arg1) {
+	void onFailure(Call arg0, Exception e) {
 		new AlertDialog.Builder(PasswordRecoverActivity.this)
 		.setTitle("Ê§°ÜRU°¡")
-		.setMessage(arg1.getLocalizedMessage())
+		.setMessage(e.getLocalizedMessage())
 		.setPositiveButton("Rua!",null)
 		.show();
 		

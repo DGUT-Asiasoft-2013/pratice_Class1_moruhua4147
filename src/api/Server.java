@@ -20,6 +20,7 @@ public class Server {
 				.build();
 	}
 	
+	public static String serverAddress="http://172.27.0.22:8080/membercenter/";
 	
 	//通过 公开 getsharedClient类提供给其他类使用
 	public static OkHttpClient getsharedClient(){
@@ -30,6 +31,6 @@ public class Server {
 	//  方面        省去了其他调用很长的前面部分
 	public static Request.Builder requestBuilderWithApi(String api){
 		return new Request.Builder()
-		.url("http://172.27.0.22:8080/membercenter/api/"+api);
+		.url(serverAddress+"api/"+api);
 	}
 }

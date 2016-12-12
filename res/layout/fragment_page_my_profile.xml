@@ -2,12 +2,24 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
 
-     <TextView 
-         android:id="@+id/me_info"
+    <TextView
+        android:id="@+id/me_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="MEMEME"/>
+        android:text="MEMEME" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="@android:style/Widget.ProgressBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+	<com.bia.AvatarView 
+	    android:id="@+id/avatar"
+	    android:layout_width="120dp"
+	    android:layout_height="120dp"
+	    android:layout_gravity="center_horizontal"
+	    android:layout_marginTop="80dp"/>
 </FrameLayout>
