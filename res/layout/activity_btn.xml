@@ -24,11 +24,18 @@
             android:layout_gravity="bottom"
             android:background="@android:color/darker_gray" />
     </FrameLayout>
+    
+    <EditText 
+        android:id="@+id/edit_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:hint="输入标题"/>
 
     <EditText
         android:id="@+id/edit1"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="350dp"
         android:gravity="top"
         android:hint="ruarua" />
 
