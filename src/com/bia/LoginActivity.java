@@ -10,6 +10,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -133,8 +135,6 @@ public class LoginActivity extends Activity {
 						@Override
 						public void run() {
 							LoginActivity.this.onResponse(arg0, user.getAccount());
-							Intent intent = new Intent(LoginActivity.this, HelloWorldActivity.class);
-									startActivity(intent);
 						}
 					});
 				}catch (final Exception e) {
@@ -169,7 +169,14 @@ public class LoginActivity extends Activity {
 	void onResponse(Call arg0,String string){
 		new AlertDialog.Builder(LoginActivity.this)
 		.setMessage("’Àªß£∫"+string+"ª∂”≠ π”√")
-		.setPositiveButton("Rua!", null)
+		.setPositiveButton("Rua!",new OnClickListener() {
+			
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(LoginActivity.this, HelloWorldActivity.class);
+				startActivity(intent);
+			}
+		})
 		.show();
 	}
 
@@ -178,7 +185,7 @@ public class LoginActivity extends Activity {
 		new AlertDialog.Builder(LoginActivity.this)
 		.setTitle(" ß∞‹RU∞°")
 		.setMessage(arg1.getLocalizedMessage())
-		.setPositiveButton("Rua!", null)
+		.setPositiveButton("Rua!",null)
 		.show();
 	}
 }

@@ -113,7 +113,7 @@ public class RegisterActivity extends Activity {
 		
 		OkHttpClient client=new OkHttpClient();
 		okhttp3.Request request=new okhttp3.Request.Builder()
-				.url("http://172.27.0.21:8080/membercenter/api/register")
+				.url("http://172.27.0.22:8080/membercenter/api/register")
 				.method("post", null)
 				.post(requestBodyBulider.build())
 				.build();

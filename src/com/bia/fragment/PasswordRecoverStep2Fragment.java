@@ -1,7 +1,10 @@
 package com.bia.fragment;
 
+import com.bia.LoginActivity;
 import com.bia.R;
+import com.bia.fragment.PasswordRecoverStep1Fragment.OnGoNextListener;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,9 +28,20 @@ public class PasswordRecoverStep2Fragment extends BaseInputCellFragment {
 		flagInputVerify=(SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_verify);
 		flagInputPassword=(SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_password);
 		flagInputPasswordRepeat=(SimpleTextInputCellFragment) getFragmentManager().findFragmentById(R.id.input_password_repeat);
+		
+		view.findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				passwordre();
+				
+			}
+		});
 		return view;
 	}
 	
+	
+
 	@Override
 	public void onResume() {
 		
@@ -38,5 +52,35 @@ public class PasswordRecoverStep2Fragment extends BaseInputCellFragment {
 		flagInputPassword.setHintText("输入新密码");
 		flagInputPasswordRepeat.setLabelText("重复输入");
 		flagInputPasswordRepeat.setHintText("再次输入新密码");
+	}
+	
+	
+	public static interface OnPasswordRecoverListener {
+		void onPasswordRecover();
+	}
+
+	OnPasswordRecoverListener onPasswordRecoverListener;
+
+	public void setOnPasswordRecoverListener(OnPasswordRecoverListener onPasswordRecoverListener) {
+		this.onPasswordRecoverListener = onPasswordRecoverListener;
+	}
+
+	 void passwordre() {
+		 if (flagInputPassword.getText().equals(flagInputPasswordRepeat.getText())) {
+			 if (onPasswordRecoverListener!=null) {
+					onPasswordRecoverListener.onPasswordRecover();
+				}
+		} else {
+			new AlertDialog.Builder(getActivity())
+			.setTitle("失败RU啊")
+			.setMessage("两次密码输入不一致")
+			.setPositiveButton("Rua!",null)
+			.show();
+		}
+	   
+	}
+	 
+	public String getText(){
+		return flagInputPassword.getText();
 	}
 }
