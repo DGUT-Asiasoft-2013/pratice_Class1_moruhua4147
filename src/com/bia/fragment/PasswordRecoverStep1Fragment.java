@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.bia.LoginActivity;
 import com.bia.R;
-import com.bia.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Fragment;
@@ -13,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import api.Server;
+import entity.User;
 import inputcells.SimpleTextInputCellFragment;
 import okhttp3.Call;
 import okhttp3.Callback;

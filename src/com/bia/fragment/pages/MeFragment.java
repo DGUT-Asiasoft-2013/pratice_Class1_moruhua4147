@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.bia.AvatarView;
 import com.bia.R;
-import com.bia.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Fragment;
@@ -18,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import api.Server;
+import entity.User;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;

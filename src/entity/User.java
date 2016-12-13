@@ -1,4 +1,4 @@
-package com.bia;
+package entity;
 
 import java.io.Serializable;
 

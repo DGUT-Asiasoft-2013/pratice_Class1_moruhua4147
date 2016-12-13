@@ -70,6 +70,15 @@ public class MainTabbarFragment extends Fragment {
 			onTabClicked(tabs[index]);
 		}
 	}
+	
+	public int getSelectedIndex(){
+		for(int i=0;i<tabs.length;i++){
+			if (tabs[i].isSelected()) {
+				return i;
+			}
+		}
+		return -1;
+	}
 
 	void onTabClicked(View tab) {
 		int selectedindex=-1;

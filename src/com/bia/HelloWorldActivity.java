@@ -39,7 +39,9 @@ public class HelloWorldActivity extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		if(tabbarFragment.getSelectedIndex()<0){
 		tabbarFragment.setSelectedItem(0);
+		}
 	}
 
 	void changeContentFragment(int index) {
