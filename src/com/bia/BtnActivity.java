@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import api.Server;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -20,7 +21,8 @@ public class BtnActivity extends Activity {
 
 	Button btn;
 	EditText edit;
-	EditText edit_title;
+	EditText editTitle;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -28,7 +30,8 @@ public class BtnActivity extends Activity {
 		setContentView(R.layout.activity_btn);
 		btn=(Button) findViewById(R.id.button1);
 		edit=(EditText) findViewById(R.id.edit1);
-		edit_title=(EditText) findViewById(R.id.edit_title);
+		editTitle=(EditText) findViewById(R.id.edit_title);
+		
 		
 		btn.setOnClickListener(new OnClickListener() {
 			
@@ -40,9 +43,21 @@ public class BtnActivity extends Activity {
 			}
 		});
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	 void sendContent() {
 		String text=edit.getText().toString();
-		String title=edit_title.getText().toString();
+		String title=editTitle.getText().toString();
 		
 		MultipartBody body = new MultipartBody.Builder()
 				.addFormDataPart("title", title)

@@ -180,7 +180,7 @@ public class FeedListFragment extends Fragment {
 			AvatarView imageView=(AvatarView) view.findViewById(R.id.image_bear);
 			Article article=data.get(position);
 			String dateStr = DateFormat.format("yyyy-MM-dd hh:mm",article.getCreateDate()).toString();
-			textView.setText("×÷Õß£º"+article.getAuthorName()+"--"+article.getText()+" "+dateStr);
+			textView.setText(article.getTitle()+"  "+dateStr);
 			textView.setTextColor(Color.BLACK);			
 			imageView.load(Server.serverAddress+article.getAuthorAvatar());
 			return view;
