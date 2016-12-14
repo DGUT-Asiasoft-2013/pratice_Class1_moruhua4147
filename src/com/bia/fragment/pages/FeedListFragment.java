@@ -39,6 +39,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+//
+//显示文章列表
+//
 public class FeedListFragment extends Fragment {
 
 	View view;
@@ -90,6 +93,7 @@ public class FeedListFragment extends Fragment {
 		String list_authorname  = data.get(position).getAuthorName();
 		String list_creatDate   = DateFormat.format("yyyy-MM-dd hh:mm",data.get(position).getCreateDate()).toString();
 		String list_authoravatar= data.get(position).getAuthorAvatar();
+		Article article = data.get(position);
 		
 		Intent intent=new Intent(getActivity(), FeedContentActivity.class);		
 		//intent.putExtra("Text", text);     // 标题  内容
@@ -98,6 +102,7 @@ public class FeedListFragment extends Fragment {
 		intent.putExtra("list_authorname",list_authorname );
 		intent.putExtra("list_creatDate",list_creatDate );
 		intent.putExtra("list_authoravatar",list_authoravatar);
+		intent.putExtra("article", article);
 		startActivity(intent);
 	}
 	

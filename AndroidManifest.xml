@@ -49,6 +49,10 @@
             android:name="BtnActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar"                      
             ></activity>
+        <activity 
+            android:name="BtnCommentActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"                      
+            ></activity>
     </application>
 
 </manifest>
