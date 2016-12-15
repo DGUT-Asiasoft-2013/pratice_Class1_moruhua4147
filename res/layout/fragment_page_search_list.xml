@@ -2,11 +2,37 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
 
-     <TextView 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="SEARCH"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/text_search"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:hint="输入搜索内容" />
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:text="Search"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:divider="@null"
+        android:dividerHeight="0dp" >
+    </ListView>
+
 </FrameLayout>

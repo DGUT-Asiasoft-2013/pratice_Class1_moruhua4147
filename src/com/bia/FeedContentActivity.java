@@ -151,12 +151,60 @@ public class FeedContentActivity extends Activity {
 		checkLiked();
 		Request request = Server.requestBuilderWithApi("/article/"+article.getId()+"/comments")
 				.get().build();
-		//
-		//
-		//打到这里
-		//
+		
+		Server.getsharedClient().newCall(request).enqueue(new Callback() {
+			
+			@Override
+			public void onResponse(Call arg0, Response arg1) throws IOException {
+				try {
+					final Page<Comment> dataPate = new ObjectMapper().readValue(arg1.body().string(), new TypeReference<Page<Comment>>() {
+					});
+					runOnUiThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							
+							FeedContentActivity.this.reloadData(dataPate);
+						}
+					});
+				} catch (final Exception e) {
+					runOnUiThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							FeedContentActivity.this.onFailure(e);
+						}
+					});
+				}
+				
+			}
+			
+			@Override
+			public void onFailure(Call arg0, final IOException arg1) {
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						FeedContentActivity.this.onFailure(arg1);
+						
+					}
+				});
+				
+			}
+		});
 	}
 	
+	
+	
+	protected void reloadData(Page<Comment> data) {
+		page = data.getNumber();
+		this.data= data.getContent();
+		commentListAdapter.notifyDataSetInvalidated();
+	}
+	
+	void onFailure(Exception e){
+		new AlertDialog.Builder(this).setMessage(e.getMessage()).show();
+	}
 	
 	
 	private boolean isLiked;
@@ -199,6 +247,9 @@ public class FeedContentActivity extends Activity {
 			}
 		});
 	}
+	
+	
+	
 
 	void onCheckLikedResult(boolean result) {
 		isLiked = result;
@@ -231,29 +282,35 @@ public class FeedContentActivity extends Activity {
 					});
 				}
 			}
-			
-			void onReloadLikesResult(int count){
-				if (count>0) {
-					btnLikes.setText("Like("+count+")");
-				} else {
-					btnLikes.setText("Like");
-				}				
-			}
-			
-			
-			
+	
 			@Override
 			public void onFailure(Call arg0, IOException arg1) {
-				// TODO Auto-generated method stub
+				arg1.printStackTrace();
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						onReloadLikesResult(0);
+					}
+				});
 				
 			}
 		});
+	}
+	
+	
+	void onReloadLikesResult(int count){
+		if (count>0) {
+			btnLikes.setText("Like("+count+")");
+		} else {
+			btnLikes.setText("Like");
+		}				
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		reload();
 		loadComment();
 	}
 
