@@ -10,9 +10,11 @@ import com.bia.R;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import android.R.color;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
@@ -34,27 +36,64 @@ import okhttp3.Response;
 public class NotesListFragment extends Fragment {
 
 	View view;
+	TextView noteCommentme;
+	TextView noteMyComment;
 	ListView listViewforNote;
 	List<Comment> dataforNote;
+	String actionUrl=("article/author_id/receivedcomment");
 	int Page = 0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		if (view == null) {
-			view = inflater.inflate(R.layout.fragment_page_note_list, null);
-			
+			view = inflater.inflate(R.layout.fragment_page_note_list, null);			
 			listViewforNote=(ListView) view.findViewById(R.id.note_list);
 			listViewforNote.setAdapter(noteListAdapter);
+			
+			noteCommentme=(TextView) view.findViewById(R.id.note_commentme);
+			noteMyComment=(TextView) view.findViewById(R.id.note_mycomment);
+			
+			noteCommentme.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					commentMe();				
+				}
+			});
+			noteMyComment.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					myComment();
+				}
+			});
 			
 		}
 		return view;
 	}
 	
+	protected void myComment() {
+		noteCommentme.setTextColor(Color.BLACK);
+		noteMyComment.setTextColor(Color.BLUE);
+		actionUrl=("article/author_id/mycomments");
+		loadnoot();
+		
+	}
+
+	protected void commentMe() {
+		noteCommentme.setTextColor(Color.BLUE);
+		noteMyComment.setTextColor(Color.BLACK);
+		actionUrl=("article/author_id/receivedcomment");
+		loadnoot();
+	}
+
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		loadnoot();
+//		noteCommentme.setBackgroundColor(color.holo_blue_light);
+//		noteMyComment.setBackgroundColor(color.holo_green_dark);
+//		loadnoot();
 	}
 	
 	
@@ -110,7 +149,7 @@ public class NotesListFragment extends Fragment {
 	
 
 	private void loadnoot() {
-		Request request = Server.requestBuilderWithApi("article/author_id/receivedcomment")
+		Request request = Server.requestBuilderWithApi(actionUrl)
 					.get().build();
 		Server.getsharedClient().newCall(request).enqueue(new Callback() {
 			
