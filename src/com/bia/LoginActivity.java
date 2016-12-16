@@ -176,6 +176,7 @@ public class LoginActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(LoginActivity.this, HelloWorldActivity.class);
 				startActivity(intent);
+				finish();
 			}
 		})
 		.show();

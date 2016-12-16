@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 import api.Server;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -23,6 +24,7 @@ public class BtnActivity extends Activity {
 	EditText edit;
 	EditText editTitle;
 	
+	//中间按钮发表文章
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -45,19 +47,18 @@ public class BtnActivity extends Activity {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
 	 void sendContent() {
 		String text=edit.getText().toString();
 		String title=editTitle.getText().toString();
+//		if(text==null||title==null){
+//			Toast.makeText(BtnActivity.this, "输入不能为空哦",
+//				     Toast.LENGTH_SHORT).show();
+//					 return;
+//		}
 		
 		MultipartBody body = new MultipartBody.Builder()
 				.addFormDataPart("title", title)

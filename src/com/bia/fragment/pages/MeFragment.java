@@ -3,16 +3,23 @@ package com.bia.fragment.pages;
 import java.io.IOException;
 
 import com.bia.AvatarView;
+import com.bia.HelloWorldActivity;
+import com.bia.LoginActivity;
 import com.bia.R;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +37,7 @@ public class MeFragment extends Fragment {
 	TextView infoView;
 	ProgressBar progress;
 	AvatarView avatar;
+	Button btnLogOut;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,6 +46,29 @@ public class MeFragment extends Fragment {
 			infoView=(TextView) view.findViewById(R.id.me_info);
 			progress=(ProgressBar) view.findViewById(R.id.progress);
 			avatar=(AvatarView) view.findViewById(R.id.avatar);
+			
+			btnLogOut=(Button) view.findViewById(R.id.btn_meloginout);
+			btnLogOut.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					new AlertDialog.Builder(getActivity())
+					.setTitle("注销")
+					.setMessage("确认注销吗")
+					.setNegativeButton("否", null)
+					.setPositiveButton("是",new OnClickListener() {
+						
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							Intent intent = new Intent(getActivity(), LoginActivity.class);
+							startActivity(intent);
+							getActivity().finish();
+						}
+					})
+					.show();
+					
+				}
+			});
 		}
 		return view;
 	}
